@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
+        'nosmpp',
         'password',
+        'role',
+        'status',
     ];
 
     /**
@@ -44,6 +47,10 @@ class User extends Authenticatable
 
     public function orders() {
         return $this->hasMany(Order::class);
+    }
+
+    public function latestOrder() {
+        return $this->hasOne(Order::class)->latestOfMany();
     }
 
     

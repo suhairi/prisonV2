@@ -12,6 +12,10 @@ class Delay extends Model
     protected $fillable = ['product_id', 'setting_id', 'quantity'];
 
     public function products() {
-        return $this->belongsTo(Product::class)
+        return $this->belongsTo(Product::class);
+    }
+
+    public function orders() {
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
 }

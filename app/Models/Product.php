@@ -11,6 +11,9 @@ class Product extends Model
 
     protected $fillable = ['name', 'price', 'status'];
 
+    public function orders() {
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'created_at', 'updated_at');
+    }
 
     public function delays() {
         return $this->hasMany(Delay::class);
