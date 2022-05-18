@@ -9,12 +9,14 @@ class Delay extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'setting_id', 'quantity'];
+    protected $fillable = ['product_id', 'quantity'];
 
+    // Product
     public function products() {
         return $this->belongsTo(Product::class);
     }
 
+    // Order
     public function orders() {
         return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
