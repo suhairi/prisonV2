@@ -36,8 +36,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'admin'], function() {
 
         // UserController
-        Route::controller(UserController::class, function() {
-
+        Route::controller(UserController::class)->group(function() {
+            Route::resource('users', UserController::class)
         });
 
         // ProductController
@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
         });
 
         // Setting Controller
-        Route::controller(SettingController::class, function () {
+        Route::controller(SettingController::class)->group(function () {
             Route::resource('settings', SettingController::class);
         });
 
@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['middleware' => 'hq'], function() {
 
         // Delay Controller
-        Route::controller(DelayController::class, function() {
+        Route::controller(DelayController::class)->group(function() {
             Route::resource('delays', DelayController::class);
         });
 
@@ -71,9 +71,10 @@ Route::group(['middleware' => 'auth'], function() {
     //       User
     //###################
 
-    Route::controller(OrderController::class, function() {
+    Route::controller(OrderController::class)->group(function() {
 
         // Order Controller
+        Route::resource('orders', OrderController::class);
     });
 
 
